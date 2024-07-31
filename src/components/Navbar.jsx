@@ -18,30 +18,38 @@ export const Navbar = () => {
                   >
                     🍕Home
                   </a>
-                  <a
-                    className='mr-2 hover:text-gray-300 border rounded px-2 py-1 border-white'
-                    href='#'
-                  >
-                  😎Profile
-                  </a>
-                  <a
-                    className='mr-2 hover:text-gray-300 border rounded px-2 py-1 border-white'
-                    href='#'
-                  >
-                    🔓Logout
-                  </a>
-                  <a
-                    className='mr-2 hover:text-gray-300 border rounded px-2 py-1 border-white'
-                    href='#'
-                  >
-                    🔐Login
-                  </a>
-                  <a
-                    className='mr-2 hover:text-gray-300 border rounded px-2 py-1 border-white'
-                    href='#'
-                  >
-                    🔐Register
-                  </a>
+
+                  {token ? (
+                    <>
+                      <a
+                        className='mr-2 hover:text-gray-300 border rounded px-2 py-1 border-white'
+                        href='#'
+                      >
+                        😎Profile
+                      </a>
+                      <a
+                        className='mr-2 hover:text-gray-300 border rounded px-2 py-1 border-white'
+                        href='#'
+                      >
+                        🔓Logout
+                      </a>
+                    </>
+                  ) : (
+                    <>
+                      <a
+                        className='mr-2 hover:text-gray-300 border rounded px-2 py-1 border-white'
+                        href='#'
+                      >
+                        🔐Login
+                      </a>
+                      <a
+                        className='mr-2 hover:text-gray-300 border rounded px-2 py-1 border-white'
+                        href='#'
+                      >
+                        🔐Register
+                      </a>
+                    </>
+                  )}
                 </nav>
               </div>
               <div className='flex items-center'>
