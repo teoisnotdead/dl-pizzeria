@@ -15,7 +15,7 @@ export const Navbar = () => {
                 </a>
                 <nav className='flex flex-wrap items-center justify-between text-white text-xs mr-5'>
                   <a
-                    className='mr-2 hover:text-gray-300 border rounded px-2 py-1 border-white'
+                    className='text-white hover:text-gray-900 hover:bg-white border rounded px-2 py-1 border-white mr-2'
                     href='#'
                   >
                     🍕Home
@@ -24,13 +24,13 @@ export const Navbar = () => {
                   {token ? (
                     <>
                       <a
-                        className='mr-2 hover:text-gray-300 border rounded px-2 py-1 border-white'
+                        className='text-white hover:text-gray-900 hover:bg-white border rounded px-2 py-1 border-white mr-2'
                         href='#'
                       >
                         😎Profile
                       </a>
                       <a
-                        className='mr-2 hover:text-gray-300 border rounded px-2 py-1 border-white'
+                        className='text-white hover:text-gray-900 hover:bg-white border rounded px-2 py-1 border-white mr-2'
                         href='#'
                       >
                         🔓Logout
@@ -39,13 +39,13 @@ export const Navbar = () => {
                   ) : (
                     <>
                       <a
-                        className='mr-2 hover:text-gray-300 border rounded px-2 py-1 border-white'
+                        className='text-white hover:text-gray-900 hover:bg-white border rounded px-2 py-1 border-white mr-2'
                         href='#'
                       >
                         🔐Login
                       </a>
                       <a
-                        className='mr-2 hover:text-gray-300 border rounded px-2 py-1 border-white'
+                        className='text-white hover:text-gray-900 hover:bg-white border rounded px-2 py-1 border-white mr-2'
                         href='#'
                       >
                         🔐Register
@@ -55,10 +55,9 @@ export const Navbar = () => {
                 </nav>
               </div>
               <div className='flex items-center'>
-                <span className='text-cyan-500 mr-1 border rounded px-2 py-1 border-cyan-500'>
-                  {' '}
+                <button className='text-cyan-500 mr-1 border rounded px-2 py-1 border-cyan-500 hover:bg-cyan-500 hover:text-white'>
                   🛒Total: {toLocalString(total)}
-                </span>
+                </button>
               </div>
             </div>
             <div className='w-full text-white md:hidden'>
