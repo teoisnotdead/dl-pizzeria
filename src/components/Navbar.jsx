@@ -1,3 +1,5 @@
+import { toLocalString } from "../utils/toLocalString"
+
 export const Navbar = () => {
   const total = 25000
   const token = false
@@ -55,7 +57,7 @@ export const Navbar = () => {
               <div className='flex items-center'>
                 <span className='text-cyan-500 mr-1 border rounded px-2 py-1 border-cyan-500'>
                   {' '}
-                  🛒Total: ${total}
+                  🛒Total: {toLocalString(total)}
                 </span>
               </div>
             </div>
