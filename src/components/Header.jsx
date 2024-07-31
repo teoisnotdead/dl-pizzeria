@@ -1,7 +1,7 @@
 export const Header = () => {
   return (
     <header className='relative bg-hero text-white p-10 h-[15rem]'>
-      <div className='absolute inset-0 bg-black opacity-60'></div>
+      <div className='absolute inset-0 bg-black opacity-50'></div>
       <div className='relative z-10 flex flex-col items-center'>
         <h1 className='text-3xl font-bold my-4'>¡Pizzería Mamma Mía!</h1>
         <p>¡Tenemos las mejoress pizzas que podrás encontrar!</p>
