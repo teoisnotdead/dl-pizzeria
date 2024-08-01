@@ -16,4 +16,3 @@ Para este hito, se creara un proyecto React con Vite y Taildwind y se crean los 
 - Header
 - CardPizza
 
-Task List
