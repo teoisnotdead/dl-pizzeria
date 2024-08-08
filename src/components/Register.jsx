@@ -50,11 +50,7 @@ export const Register = () => {
       setConfirmPasswordError(false)
     }
 
-    if (isValid) {
-      setIsDataValid(true)
-    } else {
-      setIsDataValid(false)
-    }
+    isValid && setIsDataValid(true)
   }
 
   return (
