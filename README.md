@@ -4,8 +4,8 @@
 
 ## Hito
 
-Hito 1 - Pizzería Mamma Mía
-Hito 2 - Estados, props y eventos
+- Hito 1 - Pizzería Mamma Mía
+- Hito 2 - Estados, props y eventos
 
 ## Descripción
 
