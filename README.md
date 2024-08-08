@@ -7,7 +7,6 @@
 Hito 1 - Pizzería Mamma Mía
 Hito 2 - Estados, props y eventos
 
-
 ## Descripción
 
 Para este hito 1, se creara un proyecto React con Vite y Taildwind y se crean los sgtes compoentes:
