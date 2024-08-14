@@ -2,17 +2,17 @@ import { toLocalString } from '../utils/toLocalString'
 
 export const CardPizza = ({ name, price, ingredients, image }) => {
   return (
-    <div className='bg-white shadow-md rounded-lg overflow-hidden duration-200 hover:scale-105 hover:shadow-xl'>
+    <div className='bg-white shadow-md rounded-lg m-2 overflow-hidden duration-200 hover:scale-105 hover:shadow-xl'>
       <img
         src={image}
         alt={name}
         className='w-full h-56 object-cover object-center'
       />
-      <h2 className='font-bold text-xl p-4'>{name}</h2>
+      <h2 className='font-bold text-xl p-4 uppercase'>{name}</h2>
       <hr />
       <div className='flex flex-col items-center py-2'>
         <h3 className='font-light text-xl mb-4'>Ingredientes:</h3>
-        <p className='text-gray-900 text-sm px-2'>🍕 {ingredients}</p>
+        <p className='text-gray-900 text-sm px-2'>🍕 {ingredients.join(', ')}</p>
       </div>
       <hr />
       <div className='flex flex-col items-center pt-2 pb-4'>
