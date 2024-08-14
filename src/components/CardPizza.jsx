@@ -12,7 +12,11 @@ export const CardPizza = ({ name, price, ingredients, image }) => {
       <hr />
       <div className='flex flex-col items-center py-2'>
         <h3 className='font-light text-xl mb-4'>Ingredientes:</h3>
-        <p className='text-gray-900 text-sm px-2'>🍕 {ingredients.join(', ')}</p>
+        <ul className='flex'>🍕  
+          {ingredients.map((ingredient, index) => (
+            <li className='text-gray-900 text-sm mr-1' key={index}>{ingredient}</li>
+          ))}
+        </ul>
       </div>
       <hr />
       <div className='flex flex-col items-center pt-2 pb-4'>
