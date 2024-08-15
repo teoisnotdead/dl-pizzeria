@@ -3,8 +3,35 @@ import { useState } from 'react'
 import { toLocalString } from '../utils/toLocalString'
 
 export const Cart = () => {
-
   const [cart, setCart] = useState(pizzaCart)
+  const [total, setTotal] = useState(cart.reduce((acc, pizza) => acc + pizza.price * pizza.count,0))
+
+  const calculateTotal = () => {
+    const total = cart.reduce((acc, pizza) => acc + pizza.price * pizza.count, 0)
+    setTotal(total)
+  }
+
+  const incrementCount = (id) => {
+    setCart(
+      cart.map((pizza) =>
+        pizza.id === id ? { ...pizza, count: pizza.count + 1 } : pizza
+      )
+    )
+
+    calculateTotal()
+  }
+
+  const decrementCount = (id) => {
+    setCart(
+      cart.map((pizza) =>
+        pizza.id === id && pizza.count > 1
+          ? { ...pizza, count: pizza.count - 1 }
+          : pizza
+      )
+    )
+  
+    calculateTotal()
+  }
 
   return (
     <div className='container mx-auto my-10 px-4'>
@@ -37,11 +64,19 @@ export const Cart = () => {
             </div>
 
             <div className='flex items-center'>
-              <button className='text-cyan-500 border-2 border-cyan-500 w-10 h-10 rounded-full font-bold hover:bg-cyan-500 hover:text-white cursor-pointer'>
+              <button
+                className='text-cyan-500 border-2 border-cyan-500 w-10 h-10 rounded-full font-bold hover:bg-cyan-500 hover:text-white cursor-pointer'
+                onClick={() => decrementCount(pizza.id)}
+              >
                 -
               </button>
-              <span className='mx-4 font-bold text-cyan-500'>1</span>
-              <button className='text-cyan-500 border-2 border-cyan-500 w-10 h-10 rounded-full font-bold hover:bg-cyan-500 hover:text-white cursor-pointer'>
+              <span className='mx-4 font-bold text-cyan-500'>
+                {pizza.count}
+              </span>
+              <button
+                className='text-cyan-500 border-2 border-cyan-500 w-10 h-10 rounded-full font-bold hover:bg-cyan-500 hover:text-white cursor-pointer'
+                onClick={() => incrementCount(pizza.id)}
+              >
                 +
               </button>
             </div>
@@ -51,10 +86,7 @@ export const Cart = () => {
 
       <div className='flex flex-col items-end mt-5 p-4'>
         <h3 className='font-bold text-gray-800 text-xl uppercase'>
-          Total:{' '}
-          {toLocalString(
-            cart.reduce((acc, pizza) => acc + pizza.price, 0)
-          )}
+          Total: {toLocalString(total)}
         </h3>
         <button className='bg-cyan-500 text-white px-4 py-2 rounded mt-4 font-bold hover:bg-cyan-600'>
           Pagar
