@@ -1,12 +1,16 @@
 import { pizzaCart } from '../mock/pizzas'
+import { useState } from 'react'
 import { toLocalString } from '../utils/toLocalString'
 
 export const Cart = () => {
+
+  const [cart, setCart] = useState(pizzaCart)
+
   return (
     <div className='container mx-auto my-10 px-4'>
       <h2 className='text-2xl font-bold text-gray-800'>Carrito de compras</h2>
       <div className='grid grid-cols-1 gap-4 mt-5 h-full'>
-        {pizzaCart.map((pizza) => (
+        {cart.map((pizza) => (
           <div
             key={pizza.id}
             className='bg-gray-100 flex items-center justify-between p-4 rounded shadow-md'
@@ -25,7 +29,7 @@ export const Cart = () => {
                   <strong>Código:</strong> {pizza.id}
                 </p>
                 <div className='flex justify-between items-center mt-3'>
-                  <span className='text-cyan-500 border-2 border-cyan-500 px-2 py-1 rounded-full font-bold hover:bg-cyan-500 hover:text-white cursor-pointer'>
+                  <span className='text-cyan-500 border-2 border-cyan-500 px-2 py-1 rounded-full font-bold'>
                     {toLocalString(pizza.price)}
                   </span>
                 </div>
@@ -49,7 +53,7 @@ export const Cart = () => {
         <h3 className='font-bold text-gray-800 text-xl uppercase'>
           Total:{' '}
           {toLocalString(
-            pizzaCart.reduce((acc, pizza) => acc + pizza.price, 0)
+            cart.reduce((acc, pizza) => acc + pizza.price, 0)
           )}
         </h3>
         <button className='bg-cyan-500 text-white px-4 py-2 rounded mt-4 font-bold hover:bg-cyan-600'>
