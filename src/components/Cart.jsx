@@ -4,33 +4,32 @@ import { toLocalString } from '../utils/toLocalString'
 
 export const Cart = () => {
   const [cart, setCart] = useState(pizzaCart)
-  const [total, setTotal] = useState(cart.reduce((acc, pizza) => acc + pizza.price * pizza.count,0))
+  const newTotal = cart.reduce((acc, pizza) => acc + pizza.price * pizza.count,0)
+  const [total, setTotal] = useState(newTotal)
 
-  const calculateTotal = () => {
+  const calculateTotal = (cart) => {
     const total = cart.reduce((acc, pizza) => acc + pizza.price * pizza.count, 0)
     setTotal(total)
   }
 
   const incrementCount = (id) => {
-    setCart(
-      cart.map((pizza) =>
-        pizza.id === id ? { ...pizza, count: pizza.count + 1 } : pizza
-      )
+    const newCart = cart.map(pizza => 
+      pizza.id === id ? { ...pizza, count: pizza.count + 1 } : pizza
     )
-
-    calculateTotal()
+    setCart(newCart)
+    calculateTotal(newCart)
   }
 
   const decrementCount = (id) => {
-    setCart(
-      cart.map((pizza) =>
-        pizza.id === id && pizza.count > 1
+    const newCart = cart
+      .map(pizza =>
+        pizza.id === id
           ? { ...pizza, count: pizza.count - 1 }
           : pizza
       )
-    )
-  
-    calculateTotal()
+      .filter(pizza => pizza.count > 0)
+    setCart(newCart)
+    calculateTotal(newCart)
   }
 
   return (
