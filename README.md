@@ -19,3 +19,7 @@ Para este hito 1, se creara un proyecto React con Vite y Taildwind y se crean lo
 - CardPizza
 
 Para el hito 2, se seguirá trabajando en el proyecto de la pizzería Mamma Mía, se maneja el estado y los eventos. Se crean formularios de registro y login.
+
+## Cambio de estructura de carpetas
+
+Se crea la carpeta front y back, en la carpeta front se encuentra el proyecto de React y en la carpeta back se encuentra el proyecto de Node.
