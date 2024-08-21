@@ -9,10 +9,10 @@ export function PizzeriaApp() {
   return (
     <>
       <Navbar />
-      {/* <Home />
-      <Register />
-      <Login /> */}
-      <Cart />
+      <Home />
+      {/* <Register />
+      <Login /> 
+      <Cart />*/}
       <Footer />
     </>
   )
