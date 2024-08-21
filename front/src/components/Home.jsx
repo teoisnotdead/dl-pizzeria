@@ -11,7 +11,7 @@ export const Home = () => {
   return (
     <>
       <Header />
-      <main className='container mx-auto my-10 px-4 flex-grow'>
+      <section className='container mx-auto my-10 px-4'>
         <h2 className='text-2xl font-bold text-gray-800'>Nuestras pizzas</h2>
         {isLoading && <div className='text-xl flex items-center justify-center h-32'>
           <img src='./spinner-solid.svg' alt='spinner' className='animate-spin w-10 h-10 inline-block text-gray-800' />
@@ -32,7 +32,7 @@ export const Home = () => {
             ))}
           </div>
         )}
-      </main>
+      </section>
     </>
   )
 }

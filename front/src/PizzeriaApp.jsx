@@ -9,10 +9,12 @@ export function PizzeriaApp() {
   return (
     <>
       <Navbar />
-      <Home />
-      {/* <Register />
-      <Login /> 
-      <Cart />*/}
+      <main className='flex-grow'>
+        <Home />
+        {/* <Register />
+        <Login /> 
+        <Cart /> */}
+      </main>
       <Footer />
     </>
   )
