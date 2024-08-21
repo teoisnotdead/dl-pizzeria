@@ -14,7 +14,10 @@ export const CardPizza = ({ name, price, ingredients, image }) => {
         <h3 className='font-light text-xl mb-4'>Ingredientes:</h3>
         <ul className='flex'>🍕  
           {ingredients.map((ingredient, index) => (
-            <li className='text-gray-900 text-sm mr-1' key={index}>{ingredient}</li>
+            <li className='text-gray-900 text-sm mr-1' key={index}>
+              {ingredient}
+              {index < ingredients.length - 1 ? ',' : ''}
+            </li>
           ))}
         </ul>
       </div>
