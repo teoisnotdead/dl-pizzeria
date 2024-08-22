@@ -30,7 +30,7 @@ export const CardPizza = ({ name, price, ingredients, image }) => {
           <button className='bg-white text-gray-900 px-4 py-2 mt-2 border border-gray-900 rounded-md hover:bg-gray-900 hover:text-white'>
             Ver Más 👀
           </button>
-          <button className='bg-gray-900 text-white px-4 py-2 mt-2 rounded-md hover:bg-white hover:text-gray-900 hover:border border-gray-900'>
+          <button className='bg-gray-900 text-white px-4 py-2 mt-2 rounded border hover:bg-white hover:text-gray-900 border-gray-900'>
             Añadir 🛒
           </button>
         </div>
