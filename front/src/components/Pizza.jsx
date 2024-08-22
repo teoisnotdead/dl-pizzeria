@@ -1,44 +1,64 @@
+import { useFetch } from '../hooks/useFetch'
+import { Spinner } from './Spinner'
+import { toLocalString } from '../utils/toLocalString'
+
 export const Pizza = () => {
+  const { data, isLoading, hasError } = useFetch(
+    'http://localhost:5000/api/pizzas/p001'
+  )
   return (
     <>
-      <div className='min-h-max m-auto w-1/2'>
-        <div className='flex justify-center items-center mt-20'>
+      <div className='min-h-max m-auto w-3/4 p-4'>
+        <a
+          href='/'
+          className='text-blue-500 text-xl font-semibold hover:text-blue-700 flex items-center'
+        >
           <img
-            src='https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-2000595_640_c.jpg?alt=media&token=61325b6e-a1e0-441e-b3b5-7335ba13e8be'
-            alt='pizza'
-            className='rounded-full w-1/3'
+            src='./arrow-left-solid.svg'
+            alt='volver'
+            className='text-blue-500 w-6 h-6 inline-block mr-2'
           />
-          <div className='bg-white p-8'>
-            <h2 className='text-2xl font-bold uppercase'>Pizza</h2>
-            <p className='text-gray-500'>
-              La pizza es una preparación culinaria que consiste en un pan
-              plano, habitualmente de forma circular, elaborado con harina de
-              trigo, levadura, agua y sal (a veces aceite de oliva) que
-              comúnmente se cubre con salsa de tomate, queso y otros muchos
-              ingredientes, y que se hornea a alta temperatura, tradicionalmente
-              en un horno de leña.
-            </p>
-            <div className='mt-8'>
-              <h4 className='text-xl font-bold'>Ingredientes:</h4>
+          Volver
+        </a>
 
-              <ul className='list-none text-gray-500'>
-                <li>Harina de trigo</li>
-                <li>Levadura</li>
-                <li>Agua</li>
-                <li>Sal</li>
-                <li>Aceite de oliva</li>
-                <li>Salsa de tomate</li>
-                <li>Queso</li>
-                <li>Ingredientes adicionales</li>
-              </ul>
+        {isLoading && <Spinner />}
 
-              <p className='text-xl font-bold mt-8'>Precio: <span className='text-gray-500 font-normal'>$10.00</span></p>
-              <button className='bg-gray-900 text-white px-4 py-2 mt-3 rounded border hover:bg-white hover:text-gray-900 border-gray-900'>
-                Añadir 🛒
-              </button>
+        {hasError && (
+          <p className='text-xl text-red-500 flex justify-center mt-2'>
+            Error al cargar la pizza, intenta de nuevo
+          </p>
+        )}
+
+        {data && (
+          <div className='flex justify-center items-center mt-20'>
+            <img
+              src={data.img}
+              alt={data.name}
+              className='rounded-full w-1/2'
+            />
+            <div className='bg-white p-8'>
+              <h2 className='text-2xl font-bold uppercase'>{data.name}</h2>
+              <p className='text-gray-500'>{data.desc}</p>
+              <div className='mt-8'>
+                <h4 className='text-xl font-bold'>Ingredientes:</h4>
+                <ul className='list-none text-gray-500'>
+                  {data?.ingredients.map((ingredient, index) => (
+                    <li className='capitalize' key={index}>
+                      🍕 {ingredient}
+                    </li>
+                  ))}
+                </ul>
+                <p className='text-xl font-bold mt-8'>
+                  Precio:{' '}
+                  <span className='text-gray-500 font-normal'>{toLocalString(data.price)}</span>
+                </p>
+                <button className='bg-gray-900 text-white px-4 py-2 mt-3 rounded border hover:bg-white hover:text-gray-900 border-gray-900'>
+                  Añadir 🛒
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   )
