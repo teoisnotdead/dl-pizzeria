@@ -7,6 +7,7 @@
 - Hito 1 - Pizzería Mamma Mía
 - Hito 2 - Estados, props y eventos
 - Hito 3 - Renderización dinámica de componentes
+- Hito 4 - Se integra llamada a API que viene del backend local
 
 ## Descripción
 
