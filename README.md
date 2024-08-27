@@ -8,6 +8,7 @@
 - Hito 2 - Estados, props y eventos
 - Hito 3 - Renderización dinámica de componentes
 - Hito 4 - Se integra llamada a API que viene del backend local
+- Hito 5 - Se integra rutas con React Router
 
 ## Descripción
 
