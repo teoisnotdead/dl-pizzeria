@@ -3,7 +3,13 @@ import { NavLink } from 'react-router-dom'
 
 export const Navbar = () => {
   const total = 25000
-  const token = false
+  const token = true
+
+  const getNavLinkClassNames = ({ isActive }) =>
+    isActive
+      ? 'text-gray-900 bg-white border rounded px-2 py-1 border-white mr-2'
+      : 'text-white hover:text-gray-900 hover:bg-white border rounded px-2 py-1 border-white mr-2'
+
   return (
     <>
       <nav className='bg-gray-800'>
@@ -15,40 +21,25 @@ export const Navbar = () => {
                   Pizzería Mamma Mía!
                 </NavLink>
                 <nav className='flex flex-wrap items-center justify-between text-white text-xs mr-5'>
-                  <NavLink
-                    to='/'
-                    className='text-white hover:text-gray-900 hover:bg-white border rounded px-2 py-1 border-white mr-2'
-                  >
+                  <NavLink to='/' className={getNavLinkClassNames}>
                     🍕Home
                   </NavLink>
 
                   {token ? (
                     <>
-                      <NavLink
-                        to='/profile'
-                        className='text-white hover:text-gray-900 hover:bg-white border rounded px-2 py-1 border-white mr-2'
-                      >
+                      <NavLink to='/profile' className={getNavLinkClassNames}>
                         😎Profile
                       </NavLink>
-                      <NavLink
-                        to='/'
-                        className='text-white hover:text-gray-900 hover:bg-white border rounded px-2 py-1 border-white mr-2'
-                      >
+                      <NavLink to='/logout' className={getNavLinkClassNames}>
                         🔓Logout
                       </NavLink>
                     </>
                   ) : (
                     <>
-                      <NavLink
-                        to='/login'
-                        className='text-white hover:text-gray-900 hover:bg-white border rounded px-2 py-1 border-white mr-2'
-                      >
+                      <NavLink to='/login' className={getNavLinkClassNames}>
                         🔐Login
                       </NavLink>
-                      <NavLink
-                        to='/register'
-                        className='text-white hover:text-gray-900 hover:bg-white border rounded px-2 py-1 border-white mr-2'
-                      >
+                      <NavLink to='/register' className={getNavLinkClassNames}>
                         🔐Register
                       </NavLink>
                     </>
@@ -58,7 +49,11 @@ export const Navbar = () => {
               <div className='flex items-center'>
                 <NavLink
                   to='/cart'
-                  className='text-cyan-500 mr-1 border rounded px-2 py-1 border-cyan-500 hover:bg-cyan-500 hover:text-white'
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'mr-1 border rounded px-2 py-1 border-cyan-500 bg-cyan-500 text-white'
+                      : 'text-cyan-500 mr-1 border rounded px-2 py-1 border-cyan-500 hover:bg-cyan-500 hover:text-white'
+                  }
                 >
                   🛒Total: {toLocalString(total)}
                 </NavLink>
