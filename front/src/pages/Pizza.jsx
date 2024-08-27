@@ -1,5 +1,5 @@
 import { useFetch } from '../hooks/useFetch'
-import { Spinner } from './Spinner'
+import { Spinner } from '../components/Spinner'
 import { toLocalString } from '../utils/toLocalString'
 
 export const Pizza = () => {

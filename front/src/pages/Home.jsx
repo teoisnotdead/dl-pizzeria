@@ -1,8 +1,8 @@
-import { Header } from './Header'
+import { Header } from '../components/Header'
 import { pizzas } from '../mock/pizzas'
-import { CardPizza } from './CardPizza'
+import { CardPizza } from '../components/CardPizza'
 import { useFetch } from '../hooks/useFetch'
-import { Spinner } from './Spinner'
+import { Spinner } from '../components/Spinner'
 
 export const Home = () => {
   const { data, isLoading, hasError } = useFetch(
