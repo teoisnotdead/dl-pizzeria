@@ -1,4 +1,5 @@
 import { toLocalString } from '../utils/toLocalString'
+import { NavLink } from 'react-router-dom'
 
 export const CardPizza = ({ name, price, ingredients, image }) => {
   return (
@@ -12,7 +13,8 @@ export const CardPizza = ({ name, price, ingredients, image }) => {
       <hr />
       <div className='flex flex-col items-center py-2'>
         <h3 className='font-light text-xl mb-4'>Ingredientes:</h3>
-        <ul className='flex'>🍕  
+        <ul className='flex'>
+          🍕
           {ingredients.map((ingredient, index) => (
             <li className='text-gray-900 text-sm mr-1' key={index}>
               {ingredient}
@@ -27,9 +29,12 @@ export const CardPizza = ({ name, price, ingredients, image }) => {
           Precio: {toLocalString(price)}
         </p>
         <div className='flex justify-between w-full px-7'>
-          <button className='bg-white text-gray-900 px-4 py-2 mt-2 border border-gray-900 rounded-md hover:bg-gray-900 hover:text-white'>
+          <NavLink
+            to='/pizza/p001'
+            className='bg-white text-gray-900 px-4 py-2 mt-2 border border-gray-900 rounded-md hover:bg-gray-900 hover:text-white'
+          >
             Ver Más 👀
-          </button>
+          </NavLink>
           <button className='bg-gray-900 text-white px-4 py-2 mt-2 rounded border hover:bg-white hover:text-gray-900 border-gray-900'>
             Añadir 🛒
           </button>

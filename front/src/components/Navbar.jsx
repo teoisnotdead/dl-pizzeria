@@ -1,5 +1,5 @@
-import { toLocalString } from "../utils/toLocalString"
-import { NavLink } from "react-router-dom"
+import { toLocalString } from '../utils/toLocalString'
+import { NavLink } from 'react-router-dom'
 
 export const Navbar = () => {
   const total = 25000
@@ -11,43 +11,43 @@ export const Navbar = () => {
           <div className='flex items-center w-full justify-between'>
             <div className='hidden w-full text-white md:flex md:items-center md:justify-between'>
               <div className='flex'>
-                <NavLink to="/" className='text-base text-white py-2 mr-3' href='#'>
+                <NavLink to='/' className='text-base text-white py-2 mr-3'>
                   Pizzería Mamma Mía!
                 </NavLink>
                 <nav className='flex flex-wrap items-center justify-between text-white text-xs mr-5'>
-                  <NavLink to="/"
+                  <NavLink
+                    to='/'
                     className='text-white hover:text-gray-900 hover:bg-white border rounded px-2 py-1 border-white mr-2'
-                    href='#'
                   >
                     🍕Home
                   </NavLink>
 
                   {token ? (
                     <>
-                      <NavLink to="/profile"
+                      <NavLink
+                        to='/profile'
                         className='text-white hover:text-gray-900 hover:bg-white border rounded px-2 py-1 border-white mr-2'
-                        href='#'
                       >
                         😎Profile
                       </NavLink>
-                      <NavLink to="/"
+                      <NavLink
+                        to='/'
                         className='text-white hover:text-gray-900 hover:bg-white border rounded px-2 py-1 border-white mr-2'
-                        href='#'
                       >
                         🔓Logout
                       </NavLink>
                     </>
                   ) : (
                     <>
-                      <NavLink to="/login"
+                      <NavLink
+                        to='/login'
                         className='text-white hover:text-gray-900 hover:bg-white border rounded px-2 py-1 border-white mr-2'
-                        href='#'
                       >
                         🔐Login
                       </NavLink>
-                      <NavLink to="/register"
+                      <NavLink
+                        to='/register'
                         className='text-white hover:text-gray-900 hover:bg-white border rounded px-2 py-1 border-white mr-2'
-                        href='#'
                       >
                         🔐Register
                       </NavLink>
@@ -56,7 +56,10 @@ export const Navbar = () => {
                 </nav>
               </div>
               <div className='flex items-center'>
-                <NavLink to="/cart" className='text-cyan-500 mr-1 border rounded px-2 py-1 border-cyan-500 hover:bg-cyan-500 hover:text-white'>
+                <NavLink
+                  to='/cart'
+                  className='text-cyan-500 mr-1 border rounded px-2 py-1 border-cyan-500 hover:bg-cyan-500 hover:text-white'
+                >
                   🛒Total: {toLocalString(total)}
                 </NavLink>
               </div>

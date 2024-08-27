@@ -1,6 +1,7 @@
 import { useFetch } from '../hooks/useFetch'
 import { Spinner } from '../components/Spinner'
 import { toLocalString } from '../utils/toLocalString'
+import { NavLink } from 'react-router-dom'
 
 export const Pizza = () => {
   const { data, isLoading, hasError } = useFetch(
@@ -9,17 +10,17 @@ export const Pizza = () => {
   return (
     <>
       <div className='min-h-max m-auto w-3/4 p-4'>
-        <a
-          href='/'
+        <NavLink
+          to='/'
           className='text-blue-500 text-xl font-semibold hover:text-blue-700 flex items-center'
         >
           <img
-            src='./arrow-left-solid.svg'
+            src='/arrow-left-solid.svg'
             alt='volver'
             className='text-blue-500 w-6 h-6 inline-block mr-2'
           />
           Volver
-        </a>
+        </NavLink>
 
         {isLoading && <Spinner />}
 
@@ -50,7 +51,9 @@ export const Pizza = () => {
                 </ul>
                 <p className='text-xl font-bold mt-8'>
                   Precio:{' '}
-                  <span className='text-gray-500 font-normal'>{toLocalString(data.price)}</span>
+                  <span className='text-gray-500 font-normal'>
+                    {toLocalString(data.price)}
+                  </span>
                 </p>
                 <button className='bg-gray-900 text-white px-4 py-2 mt-3 rounded border hover:bg-white hover:text-gray-900 border-gray-900'>
                   Añadir 🛒
