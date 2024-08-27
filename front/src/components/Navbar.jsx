@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 export const Navbar = () => {
   const total = 25000
-  const token = true
+  const token = false
 
   const getNavLinkClassNames = ({ isActive }) =>
     isActive
