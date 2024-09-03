@@ -1,9 +1,10 @@
 import { createContext, useState, useContext, useEffect } from 'react'
+import { pizzaCart } from '../mock/pizzas'
 
 export const CartContext = createContext()
 
 export const CartProvider = ({children}) => {
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState(pizzaCart)
   const [total, setTotal] = useState(0)
 
   const calculateTotal = () => {
@@ -20,17 +21,13 @@ export const CartProvider = ({children}) => {
   }, [cart])
 
   const addPizza = (pizza) => {
-    console.log('addPizza, pizza', pizza)
     setCart((prevCart) => {
-      const exist = prevCart.find((p) => p.id === pizza.id)
-      console.log('addPizza, exist', exist);
+      const exist = prevCart.find((p) => p.id.toLowerCase() === pizza.id.toLowerCase())
       if (exist) {
-        console.log('addPizza increment count');
         return prevCart.map((p) =>
           p.id === pizza.id ? { ...p, count: p.count + 1 } : p
         )
       } else {
-        console.log('addPizza new pizza');
         return [...prevCart, { ...pizza, count: 1 }]
       }
     })
