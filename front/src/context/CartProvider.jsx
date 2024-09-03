@@ -21,11 +21,14 @@ export const CartProvider = ({children}) => {
   }, [cart])
 
   const addPizza = (pizza) => {
+    const toLowerId = (id) => id.toLowerCase()
     setCart((prevCart) => {
-      const exist = prevCart.find((p) => p.id.toLowerCase() === pizza.id.toLowerCase())
+      const exist = prevCart.find((p) => toLowerId(p.id) === toLowerId(pizza.id))
       if (exist) {
         return prevCart.map((p) =>
-          p.id === pizza.id ? { ...p, count: p.count + 1 } : p
+          toLowerId(p.id) === toLowerId(pizza.id)
+            ? { ...p, count: p.count + 1 }
+            : p
         )
       } else {
         return [...prevCart, { ...pizza, count: 1 }]
