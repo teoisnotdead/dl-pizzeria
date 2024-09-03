@@ -31,7 +31,7 @@ export const CartProvider = ({ children }) => {
         toast.info(
           `Ahora llevas ${
             exist.count + 1
-          } ${pizza.name.toUpperCase()} en tu carrito`,
+          } ${pizza.name.toUpperCase()} en tu carrito 😋`,
           {
             position: 'top-center',
             theme: 'dark',
@@ -44,7 +44,7 @@ export const CartProvider = ({ children }) => {
             : p
         )
       } else {
-        toast.success(`Añadiste ${pizza.name.toUpperCase()} a tu carrito`, {
+        toast.success(`Añadiste ${pizza.name.toUpperCase()} a tu carrito 🍕`, {
           position: 'top-center',
           theme: 'dark',
           progressClassName: 'Toastify__progress-bar--success-rainbow',
