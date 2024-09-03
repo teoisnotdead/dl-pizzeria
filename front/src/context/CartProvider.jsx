@@ -1,10 +1,9 @@
 import { createContext, useState, useContext, useEffect } from 'react'
-import { pizzaCart } from '../mock/pizzas'
 
 export const CartContext = createContext()
 
 export const CartProvider = ({children}) => {
-  const [cart, setCart] = useState(pizzaCart)
+  const [cart, setCart] = useState([])
   const [total, setTotal] = useState(0)
 
   const calculateTotal = () => {
@@ -18,19 +17,23 @@ export const CartProvider = ({children}) => {
   useEffect(() => {
     if(!cart) return
     calculateTotal()
-  }, [cart]);
+  }, [cart])
 
   const addPizza = (pizza) => {
-    const exist = cart.find((p) => p.id === pizza.id)
-    if (exist) {
-      setCart(
-        cart.map((p) =>
-          p.id === pizza.id ? { ...exist, count: exist.count + 1 } : p
+    console.log('addPizza, pizza', pizza)
+    setCart((prevCart) => {
+      const exist = prevCart.find((p) => p.id === pizza.id)
+      console.log('addPizza, exist', exist);
+      if (exist) {
+        console.log('addPizza increment count');
+        return prevCart.map((p) =>
+          p.id === pizza.id ? { ...p, count: p.count + 1 } : p
         )
-      )
-    } else {
-      setCart([...cart, { ...pizza, count: 1 }])
-    }
+      } else {
+        console.log('addPizza new pizza');
+        return [...prevCart, { ...pizza, count: 1 }]
+      }
+    })
   }
 
   const incrementCount = (id) => {

@@ -27,6 +27,7 @@ export const Home = () => {
             {data.map(({ id, name, price, ingredients, img }) => (
               <CardPizza
                 key={id}
+                id={id}
                 name={name}
                 price={price}
                 ingredients={ingredients}

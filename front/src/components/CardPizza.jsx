@@ -1,7 +1,16 @@
+import { useCart } from '../context/CartProvider'
 import { toLocalString } from '../utils/toLocalString'
 import { NavLink } from 'react-router-dom'
 
-export const CardPizza = ({ name, price, ingredients, image }) => {
+export const CardPizza = ({ id, name, price, ingredients, image }) => {
+  const { addPizza } = useCart()
+
+  const handleAdd = () => {
+    const pizza = { id, name, price, ingredients, img: image }
+    console.log('CardPizza, handleAdd, id', pizza);
+    addPizza({ id, name, price, ingredients, img: image })
+  }
+
   return (
     <div className='bg-white shadow-md rounded-lg m-2 overflow-hidden duration-200 hover:scale-105 hover:shadow-xl'>
       <img
@@ -35,7 +44,8 @@ export const CardPizza = ({ name, price, ingredients, image }) => {
           >
             Ver Más 👀
           </NavLink>
-          <button className='bg-gray-900 text-white px-4 py-2 mt-2 rounded border hover:bg-white hover:text-gray-900 border-gray-900'>
+          <button className='bg-gray-900 text-white px-4 py-2 mt-2 rounded border hover:bg-white hover:text-gray-900 border-gray-900'
+                  onClick={handleAdd}>
             Añadir 🛒
           </button>
         </div>

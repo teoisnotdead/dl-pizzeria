@@ -25,7 +25,7 @@ export const Cart = () => {
                     {pizza.name}
                   </h2>
                   <p className='text-gray-600 text-sm'>
-                    <strong>Código:</strong> {pizza.id}
+                    <strong>Código:</strong> <span className='uppercase'>{pizza.id}</span>
                   </p>
                   <div className='flex justify-between items-center mt-3'>
                     <span className='text-cyan-500 border-2 border-cyan-500 px-2 py-1 rounded-full font-bold'>
