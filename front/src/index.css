@@ -8,3 +8,12 @@
   background-size: cover;
   background-position: center;
 }
+
+
+.Toastify__progress-bar--info-rainbow {
+  background: linear-gradient(to right, #00bfff, #1e90ff, #4169e1, #6a5acd, #8a2be2);
+}
+
+.Toastify__progress-bar--success-rainbow {
+  background: linear-gradient(to right, #32cd32, #7fff00, #adff2f, #ffd700, #ff8c00);
+}
