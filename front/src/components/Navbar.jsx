@@ -1,8 +1,9 @@
+import { useCart } from '../context/CartProvider'
 import { toLocalString } from '../utils/toLocalString'
 import { NavLink } from 'react-router-dom'
 
 export const Navbar = () => {
-  const total = 25000
+  const { total } = useCart()
   const token = false
 
   const getNavLinkClassNames = ({ isActive }) =>
