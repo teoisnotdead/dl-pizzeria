@@ -1,41 +1,9 @@
-import { pizzaCart } from '../mock/pizzas'
-import { useEffect, useState } from 'react'
+import { useCart } from '../context/CartProvider'
 import { toLocalString } from '../utils/toLocalString'
 
 export const Cart = () => {
-  const [cart, setCart] = useState(pizzaCart)
-  const [total, setTotal] = useState(0)
-
-  const calculateTotal = () => {
-    const total = cart.reduce(
-      (acc, pizza) => acc + pizza.price * pizza.count,
-      0
-    )
-    setTotal(total)
-  }
-
-  useEffect(() => {
-    calculateTotal()
-  }, [cart])
-
-  const incrementCount = (id) => {
-    setCart(
-      cart.map((pizza) =>
-        pizza.id === id ? { ...pizza, count: pizza.count + 1 } : pizza
-      )
-    )
-  }
-
-  const decrementCount = (id) => {
-    setCart(
-      cart
-        .map((pizza) =>
-          pizza.id === id ? { ...pizza, count: pizza.count - 1 } : pizza
-        )
-        .filter((pizza) => pizza.count > 0)
-    )
-  }
-
+  const { cart, total, incrementCount, decrementCount } = useCart()
+  
   return (
     <div className='container mx-auto my-10 px-4'>
       <h2 className='text-2xl font-bold text-gray-800'>Carrito de compras</h2>
