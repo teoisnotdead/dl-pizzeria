@@ -7,6 +7,23 @@ export const Cart = () => {
   const { cart, total, incrementCount, decrementCount } = useCart()
   const { token } = useUser()
 
+  const handlePay = () => {
+    if (!token) {
+      toast.error('Debes iniciar sesión para pagar', {
+        position: 'top-center',
+        theme: 'dark',
+        progressClassName: 'Toastify__progress-bar--error-rainbow',
+      })
+      return
+    }
+
+    toast.success('Pago realizado con éxito', {
+      position: 'top-center',
+      theme: 'dark',
+      progressClassName: 'Toastify__progress-bar--success-rainbow',
+    })
+  }
+
   return (
     <div className='container mx-auto my-10 px-4'>
       <h2 className='text-2xl font-bold text-gray-800'>Carrito de compras</h2>
@@ -68,8 +85,7 @@ export const Cart = () => {
           Total: {toLocalString(total)}
         </h3>
         <button
-          disabled={!token}
-          onClick={() => alert('Pagado')}
+          onClick={handlePay}
           className={`px-4 py-2 rounded mt-4 font-bold ${
             token
               ? 'bg-cyan-500 text-white hover:bg-cyan-600'

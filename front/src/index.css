@@ -17,3 +17,7 @@
 .Toastify__progress-bar--success-rainbow {
   background: linear-gradient(to right, #32cd32, #7fff00, #adff2f, #ffd700, #ff8c00);
 }
+
+.Toastify__progress-bar--error-rainbow {
+  background: linear-gradient(to right, #ff0000, #ff4500, #ff6347, #ff7f50, #ff8c00);
+}

@@ -9,8 +9,8 @@ export const UserProvider = ({ children }) => {
   const navigate = useNavigate()
 
   const logout = () => {
-    navigate('/login')
     setToken(false)
+    navigate('/login')
 
     toast.info('Cerraste sesión exitosamente', {
       position: 'top-center',
