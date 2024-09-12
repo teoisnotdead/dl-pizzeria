@@ -1,15 +1,19 @@
 import { useCart } from '../context/CartProvider'
 import { toLocalString } from '../utils/toLocalString'
 import { NavLink } from 'react-router-dom'
+import { useUser } from '../context/UserProvider'
 
 export const Navbar = () => {
   const { total } = useCart()
-  const token = false
+  const { token, logout } = useUser()
+
+  const defaultClasses =
+    'text-white hover:text-gray-900 hover:bg-white border rounded px-2 py-1 border-white mr-2'
+  const activeClasses =
+    'text-gray-900 bg-white border rounded px-2 py-1 border-white mr-2'
 
   const getNavLinkClassNames = ({ isActive }) =>
-    isActive
-      ? 'text-gray-900 bg-white border rounded px-2 py-1 border-white mr-2'
-      : 'text-white hover:text-gray-900 hover:bg-white border rounded px-2 py-1 border-white mr-2'
+    isActive ? activeClasses : defaultClasses
 
   return (
     <>
@@ -31,9 +35,12 @@ export const Navbar = () => {
                       <NavLink to='/profile' className={getNavLinkClassNames}>
                         😎Profile
                       </NavLink>
-                      <NavLink to='/logout' className={getNavLinkClassNames}>
+                      <button
+                        onClick={() => logout()}
+                        className={defaultClasses}
+                      >
                         🔓Logout
-                      </NavLink>
+                      </button>
                     </>
                   ) : (
                     <>

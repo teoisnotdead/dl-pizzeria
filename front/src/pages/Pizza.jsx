@@ -9,8 +9,6 @@ export const Pizza = () => {
   const { data, isLoading, hasError } = useFetch(
     `http://localhost:5000/api/pizzas/${id}`
   )
-  console.log('Pizza, id', id);
-  console.log('Pizza, data', data);
   return (
     <>
       <div className='min-h-max m-auto w-3/4 p-4'>
