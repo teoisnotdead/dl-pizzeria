@@ -1,4 +1,5 @@
 import { useFetch } from '../hooks/useFetch'
+import { useCart } from '../context/CartProvider'
 import { useParams } from 'react-router-dom'
 import { Spinner } from '../components/Spinner'
 import { toLocalString } from '../utils/toLocalString'
@@ -9,6 +10,8 @@ export const Pizza = () => {
   const { data, isLoading, hasError } = useFetch(
     `http://localhost:5000/api/pizzas/${id}`
   )
+  const { addPizza } = useCart()
+
   return (
     <>
       <div className='min-h-max m-auto w-3/4 p-4'>
@@ -57,7 +60,10 @@ export const Pizza = () => {
                     {toLocalString(data.price)}
                   </span>
                 </p>
-                <button className='bg-gray-900 text-white px-4 py-2 mt-3 rounded border hover:bg-white hover:text-gray-900 border-gray-900'>
+                <button
+                  className='bg-gray-900 text-white px-4 py-2 mt-3 rounded border hover:bg-white hover:text-gray-900 border-gray-900'
+                  onClick={() => addPizza(data)}
+                >
                   Añadir 🛒
                 </button>
               </div>

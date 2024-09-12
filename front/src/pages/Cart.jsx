@@ -17,7 +17,7 @@ export const Cart = () => {
       return
     }
 
-    toast.success('Pago realizado con éxito', {
+    toast.success('Pago realizado con éxito 🤑', {
       position: 'top-center',
       theme: 'dark',
       progressClassName: 'Toastify__progress-bar--success-rainbow',
