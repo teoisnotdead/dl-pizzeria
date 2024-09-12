@@ -84,16 +84,18 @@ export const Cart = () => {
         <h3 className='font-bold text-gray-800 text-xl uppercase'>
           Total: {toLocalString(total)}
         </h3>
-        <button
-          onClick={handlePay}
-          className={`px-4 py-2 rounded mt-4 font-bold ${
-            token
-              ? 'bg-cyan-500 text-white hover:bg-cyan-600'
-              : 'bg-gray-300 text-gray-500'
-          }`}
-        >
-          Pagar
-        </button>
+        {cart.length > 0 && (
+          <button
+            onClick={handlePay}
+            className={`px-4 py-2 rounded mt-4 font-bold ${
+              token
+                ? 'bg-cyan-500 text-white hover:bg-cyan-600'
+                : 'bg-gray-300 text-gray-500'
+            }`}
+          >
+            Pagar
+          </button>
+        )}
       </div>
     </div>
   )

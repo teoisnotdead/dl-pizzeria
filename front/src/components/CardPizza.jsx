@@ -6,8 +6,6 @@ export const CardPizza = ({ id, name, price, ingredients, image }) => {
   const { addPizza } = useCart()
 
   const handleAdd = () => {
-    const pizza = { id, name, price, ingredients, img: image }
-    console.log('CardPizza, handleAdd, id', pizza);
     addPizza({ id, name, price, ingredients, img: image })
   }
 

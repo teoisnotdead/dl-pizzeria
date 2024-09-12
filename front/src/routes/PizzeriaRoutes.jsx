@@ -11,7 +11,6 @@ import { AuthGuard } from '../guard/AuthGuard'
 
 export const PizzeriaRoutes = () => {
   const { token } = useUser()
-  console.log(token);
 
   return (
     <>
