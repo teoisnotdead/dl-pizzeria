@@ -1,12 +1,16 @@
 import { useFetch } from '../hooks/useFetch'
+import { useParams } from 'react-router-dom'
 import { Spinner } from '../components/Spinner'
 import { toLocalString } from '../utils/toLocalString'
 import { NavLink } from 'react-router-dom'
 
 export const Pizza = () => {
+  const { id } = useParams()
   const { data, isLoading, hasError } = useFetch(
-    'http://localhost:5000/api/pizzas/p001'
+    `http://localhost:5000/api/pizzas/${id}`
   )
+  console.log('Pizza, id', id);
+  console.log('Pizza, data', data);
   return (
     <>
       <div className='min-h-max m-auto w-3/4 p-4'>

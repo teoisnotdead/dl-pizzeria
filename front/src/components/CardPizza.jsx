@@ -39,7 +39,7 @@ export const CardPizza = ({ id, name, price, ingredients, image }) => {
         </p>
         <div className='flex justify-between w-full px-7'>
           <NavLink
-            to='/pizza/p001'
+            to={`/pizza/${id}`}
             className='bg-white text-gray-900 px-4 py-2 mt-2 border border-gray-900 rounded-md hover:bg-gray-900 hover:text-white'
           >
             Ver Más 👀
