@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from 'react'
-import { toast } from 'react-toastify'
+import { showToast } from '../utils/showToast'
 
 export const CartContext = createContext()
 
@@ -27,27 +27,24 @@ export const CartProvider = ({ children }) => {
         (p) => toLowerId(p.id) === toLowerId(pizza.id)
       )
       if (exist) {
-        toast.info(
+        showToast(
           `Ahora llevas ${
             exist.count + 1
           } ${pizza.name.toUpperCase()} en tu carrito 😋`,
-          {
-            position: 'top-center',
-            theme: 'dark',
-            progressClassName: 'Toastify__progress-bar--info-rainbow',
-          }
+          'info'
         )
+
         return prevCart.map((p) =>
           toLowerId(p.id) === toLowerId(pizza.id)
             ? { ...p, count: p.count + 1 }
             : p
         )
       } else {
-        toast.success(`Añadiste ${pizza.name.toUpperCase()} a tu carrito 🍕`, {
-          position: 'top-center',
-          theme: 'dark',
-          progressClassName: 'Toastify__progress-bar--success-rainbow',
-        })
+        showToast(
+          `Añadiste ${pizza.name.toUpperCase()} a tu carrito 🍕`,
+          'success'
+        )
+
         return [...prevCart, { ...pizza, count: 1 }]
       }
     })

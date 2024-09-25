@@ -1,4 +1,4 @@
-import { toast } from 'react-toastify'
+import { showToast } from '../utils/showToast'
 import { useCart } from '../context/CartProvider'
 import { useUser } from '../context/UserProvider'
 import { toLocalString } from '../utils/toLocalString'
@@ -9,19 +9,12 @@ export const Cart = () => {
 
   const handlePay = () => {
     if (!token) {
-      toast.error('Debes iniciar sesión para pagar', {
-        position: 'top-center',
-        theme: 'dark',
-        progressClassName: 'Toastify__progress-bar--error-rainbow',
-      })
+      showToast('Debes iniciar sesión para pagar', 'error')
+
       return
     }
 
-    toast.success('Pago realizado con éxito 🤑', {
-      position: 'top-center',
-      theme: 'dark',
-      progressClassName: 'Toastify__progress-bar--success-rainbow',
-    })
+    showToast('Pago realizado con éxito 🤑', 'success')
   }
 
   return (
