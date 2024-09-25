@@ -37,6 +37,8 @@ export const useFetch = (url, InitOptions = {}) => {
           hasError: false,
           error: null
         })
+
+        return { data, hasError: false }
       } catch (error) {
         setState({
           data: null,
@@ -44,6 +46,8 @@ export const useFetch = (url, InitOptions = {}) => {
           hasError: true,
           error: error.message
         })
+
+        return { data: null, hasError: true }
       }
     }, [url]
   )

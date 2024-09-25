@@ -25,7 +25,7 @@ export const UserProvider = ({ children }) => {
       body: JSON.stringify(body)
     }
 
-    await getFetch(url, headers)
+    return await getFetch(url, headers)
   }
 
   const setDataFromResponse = ({ email, token }) => {
@@ -36,24 +36,16 @@ export const UserProvider = ({ children }) => {
 
   const login = async (email, password) => {
     const url = `${baseUrl}/login`
-    console.log(url);
-    await authRequest(url, { email, password })
+    const result = await authRequest(url, { email, password })
 
-    console.log('data login', data?.token);
-    console.log('email login', email);
-
-    if(!hasError && data) setDataFromResponse({ email, token: data.token })
-    
+    if (!result.hasError && result.data) setDataFromResponse({ email, token: result.data.token })
   }
 
   const register = async (email, password) => {
     const url = `${baseUrl}/register`
+    const result = await authRequest(url, { email, password })
 
-    await authRequest(url, { email, password })
-
-    console.log('data reg', data.token);
-    console.log('email reg', email);
-    if(!hasError && data) setDataFromResponse(email, data.token)
+    if (!result.hasError && result.data) setDataFromResponse({ email, token: result.data.token })
   }
 
   const logout = () => {
