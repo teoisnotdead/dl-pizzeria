@@ -3,11 +3,18 @@ import { pizzas } from '../mock/pizzas'
 import { CardPizza } from '../components/CardPizza'
 import { useFetch } from '../hooks/useFetch'
 import { Spinner } from '../components/Spinner'
+import { useEffect } from 'react'
 
 export const Home = () => {
-  const { data, isLoading, hasError } = useFetch(
+  const { data, isLoading, hasError, getFetch } = useFetch(
     'http://localhost:5000/api/pizzas'
-  )
+  );
+
+  useEffect(() => {
+    console.log(isLoading);
+    getFetch();
+    console.log(isLoading);
+  }, [getFetch]);
 
   return (
     <>
