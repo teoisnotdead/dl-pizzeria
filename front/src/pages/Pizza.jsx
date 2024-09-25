@@ -4,13 +4,16 @@ import { useParams } from 'react-router-dom'
 import { Spinner } from '../components/Spinner'
 import { toLocalString } from '../utils/toLocalString'
 import { NavLink } from 'react-router-dom'
+import { useEffect } from 'react'
 
 export const Pizza = () => {
   const { id } = useParams()
-  const { data, isLoading, hasError } = useFetch(
-    `http://localhost:5000/api/pizzas/${id}`
-  )
+  const { data, isLoading, hasError, getFetch } = useFetch()
   const { addPizza } = useCart()
+
+  useEffect(() => {
+    getFetch(`http://localhost:5000/api/pizzas/${id}`)
+  }, [getFetch])
 
   return (
     <>
