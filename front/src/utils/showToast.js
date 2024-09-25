@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify'
 
-const toasTypes = {
+const toastTypes = {
   success: toast.success,
   error: toast.error,
   info: toast.info,
@@ -13,8 +13,7 @@ const progressClasses = {
 }
 
 export const showToast = (message, type = 'info') => {
-  console.log('showToast', message, type);
-  toasTypes[type](message, {
+  toastTypes[type](message, {
     position: 'top-center',
     theme: 'dark',
     progressClassName: progressClasses[type],
