@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 
-export const useFetch = (url, options) => {
+export const useFetch = (url, InitOptions = {}) => {
 
   const [state, setState] = useState({
     data: null,
@@ -18,7 +18,7 @@ export const useFetch = (url, options) => {
     })
   }
 
-  const getFetch = useCallback(async (url, options) => {
+  const getFetch = useCallback(async (url, options = InitOptions) => {
       setLoadingState()
   
       try {
@@ -26,6 +26,10 @@ export const useFetch = (url, options) => {
   
         const response = await fetch(url, options)
         const data = await response.json()
+
+        if (!response.ok) {
+          throw new Error(data.error)
+        }
   
         setState({
           data: data,

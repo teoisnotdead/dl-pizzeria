@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from 'react'
+import { createContext, useState, useContext, useEffect } from 'react'
 import { useFetch } from '../hooks/useFetch'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -11,8 +11,12 @@ export const UserProvider = ({ children }) => {
   const { data, isLoading, hasError, getFetch } = useFetch()
 
   const navigate = useNavigate()
-
   const baseUrl = 'http://localhost:5000/api/auth'
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) setToken(token)
+  }, [])
  
   const authRequest = async (url, body) => {
     const headers = {
@@ -24,15 +28,22 @@ export const UserProvider = ({ children }) => {
     await getFetch(url, headers)
   }
 
+  const setDataFromResponse = ({ email, token }) => {
+    localStorage.setItem('token', token)
+    setToken(token)
+    setEmail(email)
+  }
+
   const login = async (email, password) => {
     const url = `${baseUrl}/login`
     console.log(url);
     await authRequest(url, { email, password })
 
-    if(!hasError && data) {
-      setToken(data.token)
-      setEmail(email)
-    }
+    console.log('data login', data?.token);
+    console.log('email login', email);
+
+    if(!hasError && data) setDataFromResponse({ email, token: data.token })
+    
   }
 
   const register = async (email, password) => {
@@ -40,14 +51,14 @@ export const UserProvider = ({ children }) => {
 
     await authRequest(url, { email, password })
 
-    if(!hasError && data) {
-      setToken(data.token)
-      setEmail(email)
-    }
+    console.log('data reg', data.token);
+    console.log('email reg', email);
+    if(!hasError && data) setDataFromResponse(email, data.token)
   }
 
   const logout = () => {
-    setToken(false)
+    localStorage.removeItem('token')
+    setToken(null)
     navigate('/login')
 
     toast.info('Cerraste sesión exitosamente', {

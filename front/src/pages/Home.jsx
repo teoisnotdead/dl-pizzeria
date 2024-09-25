@@ -6,14 +6,10 @@ import { Spinner } from '../components/Spinner'
 import { useEffect } from 'react'
 
 export const Home = () => {
-  const { data, isLoading, hasError, getFetch } = useFetch(
-    'http://localhost:5000/api/pizzas'
-  );
+  const { data, isLoading, hasError, getFetch } = useFetch();
 
   useEffect(() => {
-    console.log(isLoading);
-    getFetch();
-    console.log(isLoading);
+    getFetch('http://localhost:5000/api/pizzas');
   }, [getFetch]);
 
   return (
