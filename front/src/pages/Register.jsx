@@ -1,7 +1,11 @@
 import { useState } from 'react'
 import { Input } from '../components/Input'
+import { useUser } from '../context/UserProvider'
+import { Spinner } from '../components/Spinner'
 
 export const Register = () => {
+  const { register, isLoading, hasError } = useUser()
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -25,7 +29,7 @@ export const Register = () => {
     return password === confirmPassword
   }
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault()
     let isValid = true
 
@@ -50,7 +54,10 @@ export const Register = () => {
       setConfirmPasswordError(false)
     }
 
-    isValid && setIsDataValid(true)
+    if (isValid) {
+      await register(email, password)
+      setIsDataValid(true)
+    }
   }
 
   return (
@@ -87,16 +94,18 @@ export const Register = () => {
         <button
           onClick={handleRegister}
           className='bg-cyan-500 text-white p-2 rounded-md my-2 hover:bg-cyan-600'
+          disabled={isLoading}
         >
-          Registrarme
+          {isLoading ? 'Cargando...' : 'Registrarse'}
         </button>
       </form>
 
-      { isDataValid && (
-        <div className='bg-green-100 border-l-4 border-green-500 text-green-700 p-4 w-5/6 my-4'>
-          <p className='font-semibold'>¡Registro exitoso!</p>
-          <p>¡Bienvenido a la mejor pizzería de la ciudad!</p>
-        </div>
+      {isLoading && <Spinner />}
+
+      {hasError && (
+        <p className='text-red-500 text-xl'>
+          Error al registrarse, intenta de nuevo.
+        </p>
       )}
     </div>
   )

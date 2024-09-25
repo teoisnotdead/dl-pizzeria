@@ -3,5 +3,20 @@
     "email": "test@test.com",
     "password": "123123",
     "id": "UYz_2Vy9rNw7uELQ7AZ8D"
+  },
+  {
+    "email": "aa@aa.cl",
+    "password": "123456",
+    "id": "DXry3Aw1LM_-CZW8nRwpP"
+  },
+  {
+    "email": "bb@bb.cl",
+    "password": "123123",
+    "id": "4QBWmkee_AMEsjER5BshB"
+  },
+  {
+    "email": "cc@cc.cl",
+    "password": "123123",
+    "id": "leQj67GbYiwRw73B3os_8"
   }
 ]

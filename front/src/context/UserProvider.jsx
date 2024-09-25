@@ -50,12 +50,24 @@ export const UserProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem('token')
     setToken(null)
+    setEmail(null)
     navigate('/login')
+  }
+
+  const getUserData = async () => {
+    const url = `${baseUrl}/me`
+    const headers = {
+      headers: { 'Authorization': `Bearer ${token}` }
+    }
+
+    const { data } = await getFetch(url, headers)
+
+    if (data) setEmail(data.email)
   }
 
   return (
     <UserContext.Provider
-      value={{ token, email, login, register, logout, isLoading, hasError }}
+      value={{ token, email, login, register, logout, getUserData, isLoading, hasError }}
     >
       {children}
     </UserContext.Provider>
