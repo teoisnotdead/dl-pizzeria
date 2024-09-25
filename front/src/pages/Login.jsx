@@ -1,19 +1,16 @@
 import { Input } from '../components/Input'
 import { useState } from 'react'
+import { useUser } from '../context/UserProvider'
+import { Spinner } from '../components/Spinner'
 
 export const Login = () => {
-
-  const userData = {
-    email: 'alfredo@dominio.cl',
-    password: '123456'
-  }
+  const { login, isLoading, hasError } = useUser()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const [emailError, setEmailError] = useState(false)
   const [passwordError, setPasswordError] = useState(false)
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value)
@@ -25,29 +22,20 @@ export const Login = () => {
     setPasswordError(false)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
-    let isValid = true
+    if (!email) setEmailError(true)
+    if (!password) setPasswordError(true)
 
-    if (email !== userData.email) {
-      setEmailError(true)
-      isValid = false
-    }
-
-    if (password !== userData.password) {
-      setPasswordError(true)
-      isValid = false
-    }
-
-    isValid && setIsAuthenticated(true)
+    await login(email, password)
   }
 
   return (
     <div className='flex flex-col items-center justify-center h-screen'>
       <h1 className='text-4xl font-medium my-4'>¡Inicia sesión!</h1>
       <div className='w-5/6 border-t-[0.1px] border-gray-300 my-5'></div>
-      <form className='flex flex-col w-5/6'>
+      <form className='flex flex-col w-5/6' onSubmit={handleSubmit}>
         <Input
           type='email'
           placeholder='Email'
@@ -63,17 +51,20 @@ export const Login = () => {
           errorMessage={passwordError && 'Contraseña inválida'}
         />
         <button
-          onClick={handleSubmit}
+          type='submit'
           className='bg-cyan-500 text-white p-2 rounded-md my-2 hover:bg-cyan-600'
+          disabled={isLoading}
         >
-          Entrar
+          {isLoading ? 'Cargando...' : 'Entrar'}
         </button>
       </form>
 
-      {isAuthenticated && (
-       <div className='bg-green-100 border-l-4 border-green-500 text-green-700 p-4 w-5/6 my-4'>
-       <p className='font-semibold'>¡Bienvenido de vuelta!</p>
-     </div>
+      {isLoading && <Spinner />}
+
+      {hasError && (
+        <p className='text-red-500 text-xl'>
+          Error al iniciar sesión, intenta de nuevo.
+        </p>
       )}
     </div>
   )

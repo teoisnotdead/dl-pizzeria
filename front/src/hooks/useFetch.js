@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 
-export const useFetch = (url) => {
+export const useFetch = (url, options) => {
 
   const [state, setState] = useState({
     data: null,
-    isLoading: true,
+    isLoading: false,
     hasError: false,
     error: null
   })
@@ -18,13 +18,13 @@ export const useFetch = (url) => {
     })
   }
 
-  const getFetch = useCallback(async () => {
+  const getFetch = useCallback(async (url, options) => {
       setLoadingState()
   
       try {
         await new Promise((resolve) => setTimeout(resolve, 1000))
   
-        const response = await fetch(url)
+        const response = await fetch(url, options)
         const data = await response.json()
   
         setState({
