@@ -1,20 +1,41 @@
-import { showToast } from '../utils/showToast'
-import { useCart } from '../context/CartProvider'
+import { useFetch } from '../hooks/useFetch'
 import { useUser } from '../context/UserProvider'
+import { useCart } from '../context/CartProvider'
 import { toLocalString } from '../utils/toLocalString'
+import { showToast } from '../utils/showToast'
+import { Spinner } from '../components/Spinner'
 
 export const Cart = () => {
-  const { cart, total, incrementCount, decrementCount } = useCart()
+  const { data, isLoading, hasError, getFetch } = useFetch()
+  const { cart, total, incrementCount, decrementCount, cleanCart } = useCart()
   const { token } = useUser()
 
-  const handlePay = () => {
+  const handlePay = async () => {
     if (!token) {
       showToast('Debes iniciar sesión para pagar', 'error')
 
       return
     }
 
-    showToast('Pago realizado con éxito 🤑', 'success')
+    try {
+      await getFetch('http://localhost:5000/api/checkouts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ cart }),
+      })
+  
+      if (hasError) {
+        showToast('Error al realizar el pago', 'error') 
+      } else {
+        showToast('Pago realizado con éxito 🤑', 'success')
+        cleanCart()
+      }
+    } catch (error) {
+      showToast('Error al realizar el pago', 'error')
+    }
   }
 
   return (
@@ -80,16 +101,30 @@ export const Cart = () => {
         {cart.length > 0 && (
           <button
             onClick={handlePay}
+            disabled={isLoading}
             className={`px-4 py-2 rounded mt-4 font-bold ${
               token
                 ? 'bg-cyan-500 text-white hover:bg-cyan-600'
                 : 'bg-gray-300 text-gray-500'
             }`}
           >
-            Pagar
+            {isLoading ? 'Procesando...' : 'Pagar'}
           </button>
         )}
       </div>
+
+      {hasError && (
+        <p className='text-xl text-red-500 text-center'>
+          Error al procesar el pago, intenta de nuevo
+        </p>
+      )}
+
+      {isLoading && (
+        <div className='flex flex-col items-center'>
+          <Spinner />
+          <p className='text-xl text-gray-800 mt-5'>Procesando el pago...</p>
+        </div>
+      )}
     </div>
   )
 }
