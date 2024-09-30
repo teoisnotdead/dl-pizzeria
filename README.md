@@ -10,6 +10,8 @@
 - Hito 4 - Se integra llamada a API que viene del backend local
 - Hito 5 - Se integra rutas con React Router
 - Hito 6 - Se integra useContext para el carro de compras
+- Hito 7 - Se integra proteccion de rutas con React Router
+- Hito 8 - Se integra llamada a API para carrito y validaciones con JWT
 
 ## Descripción
 
