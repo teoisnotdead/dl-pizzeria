@@ -28,3 +28,16 @@ Para el hito 2, se seguirá trabajando en el proyecto de la pizzería Mamma Mía
 ## Cambio de estructura de carpetas
 
 Se crea la carpeta front y back, en la carpeta front se encuentra el proyecto de React y en la carpeta back se encuentra el proyecto de Node.
+
+## Instalación
+Para levantar el backend se debe ir a la carpeta b back y se debe ejecutar el sgte comando:
+```
+npm install
+npm run dev
+```
+
+Para levantar el frontend se debe ir a la carpeta front y se debe ejecutar el sgte comando:
+```
+npm install
+npm run dev
+```
